@@ -6,7 +6,7 @@ import autoprefixer from "autoprefixer";
 import ExtractTextPlugin from  "extract-text-webpack-plugin";
 
 const extractCSS = new ExtractTextPlugin({
-  filename: "css/[name].bundle.css"
+  filename: "dist/css/[name].bundle.css"
 });
 
 export default {
@@ -65,7 +65,7 @@ export default {
             loader: "url-loader",
             options: {
               limit: 10000, // Convert images < 10k to base64 strings
-              name: "images/[hash].[ext]"
+              name: "dist/images/[hash].[ext]"
             }
           }
         ]
@@ -80,7 +80,7 @@ export default {
           {
             loader: "file-loader",
             options: {
-              name: "fonts/[hash].[ext]",
+              name: "dist/fonts/[hash].[ext]",
               limit: 10000
             }
           }
@@ -106,5 +106,10 @@ export default {
     }),
     new CleanWebpackPlugin(["public"]),
     extractCSS,
-  ]
+    new webpack.optimize.CommonsChunkPlugin({
+      name: "commons",
+      filename: "dist/commons.js"
+    }),
+  ],
+  devtool: "source-map"
 };
