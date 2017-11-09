@@ -7,6 +7,7 @@
   "author": "Isaac Torres <isaac@crayon.com.mx>",
   "license": "MIT",
   "dependencies": {
+    "clean-webpack-plugin": "^0.1.17",
     "html-loader": "^0.5.1",
     "html-webpack-plugin": "^2.30.1",
     "webpack": "^3.8.1",

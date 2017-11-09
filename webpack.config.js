@@ -1,6 +1,7 @@
 var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var webpack = require("webpack");
+var CleanWebpackPlugin = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -35,6 +36,7 @@ module.exports = {
       filename: "index.html",
       template: "./src/index.html",
       hash: true
-    })
+    }),
+    new CleanWebpackPlugin(["public"])
   ]
 };
