@@ -1,0 +1,14 @@
+body {
+  background: #f3f3f3;
+}
+.dom-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex-flow: column nowrap;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}

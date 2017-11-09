@@ -3,7 +3,7 @@ import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
 import CleanWebpackPlugin from "clean-webpack-plugin";
 import autoprefixer from "autoprefixer";
-import ExtractTextPlugin from  "extract-text-webpack-plugin";
+import ExtractTextPlugin from "extract-text-webpack-plugin";
 
 const extractCSS = new ExtractTextPlugin({
   filename: "dist/css/[name].bundle.css"
@@ -87,6 +87,22 @@ export default {
         ]
       },
       {
+        test: /\.mp3$/,
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules")
+        ],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "dist/audio/[hash].[ext]",
+              limit: 10000
+            }
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         include: path.resolve(__dirname, "src"),
         use: [
@@ -94,7 +110,7 @@ export default {
             loader: "babel-loader"
           }
         ]
-      },
+      }
     ]
   },
   plugins: [
@@ -109,7 +125,7 @@ export default {
     new webpack.optimize.CommonsChunkPlugin({
       name: "commons",
       filename: "dist/commons.js"
-    }),
+    })
   ],
   devtool: "source-map"
 };
