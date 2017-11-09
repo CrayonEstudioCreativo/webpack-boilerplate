@@ -54,6 +54,38 @@ module.exports = {
           ]
         })
       },
+      {
+        test: /\.(png|jpg|svg)$/,
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules")
+        ],
+        use: [
+          {
+            loader: "url-loader",
+            options: {
+              limit: 10000, // Convert images < 10k to base64 strings
+              name: "images/[hash].[ext]"
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+        include: [
+          path.resolve(__dirname, "src"),
+          path.resolve(__dirname, "node_modules")
+        ],
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "fonts/[hash].[ext]",
+              limit: 10000
+            }
+          }
+        ]
+      },
     ]
   },
   plugins: [
