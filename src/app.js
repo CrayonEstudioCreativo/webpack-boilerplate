@@ -1,4 +1,4 @@
-var css = require("./scss/styles.scss");
+import "./scss/styles.scss";
 
 document.getElementById("app").innerHTML = "Este es nuestro proyecto";
 

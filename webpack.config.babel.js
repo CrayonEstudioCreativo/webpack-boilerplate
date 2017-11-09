@@ -1,15 +1,15 @@
-var path = require("path");
-var HtmlWebpackPlugin = require("html-webpack-plugin");
-var webpack = require("webpack");
-var CleanWebpackPlugin = require("clean-webpack-plugin");
-var autoprefixer = require("autoprefixer");
-var ExtractTextPlugin = require( "extract-text-webpack-plugin");
+import path from "path";
+import HtmlWebpackPlugin from "html-webpack-plugin";
+import webpack from "webpack";
+import CleanWebpackPlugin from "clean-webpack-plugin";
+import autoprefixer from "autoprefixer";
+import ExtractTextPlugin from  "extract-text-webpack-plugin";
 
-var extractCSS = new ExtractTextPlugin({
+const extractCSS = new ExtractTextPlugin({
   filename: "css/[name].bundle.css"
 });
 
-module.exports = {
+export default {
   entry: {
     app: "./src/app.js"
   },
@@ -83,6 +83,15 @@ module.exports = {
               name: "fonts/[hash].[ext]",
               limit: 10000
             }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        include: path.resolve(__dirname, "src"),
+        use: [
+          {
+            loader: "babel-loader"
           }
         ]
       },
