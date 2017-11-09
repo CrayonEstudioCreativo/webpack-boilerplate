@@ -1,0 +1,9 @@
+{
+  "name": "webpack-boilerplate",
+  "version": "1.0.0",
+  "description": "Boilerplate para Webpack",
+  "main": "index.js",
+  "repository": "https://github.com/CrayonEstudioCreativo/webpack-boilerplate.git",
+  "author": "Isaac Torres <isaac@crayon.com.mx>",
+  "license": "MIT"
+}
