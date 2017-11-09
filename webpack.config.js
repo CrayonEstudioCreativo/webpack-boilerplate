@@ -2,6 +2,12 @@ var path = require("path");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 var webpack = require("webpack");
 var CleanWebpackPlugin = require("clean-webpack-plugin");
+var autoprefixer = require("autoprefixer");
+var ExtractTextPlugin = require( "extract-text-webpack-plugin");
+
+var extractCSS = new ExtractTextPlugin({
+  filename: "css/[name].bundle.css"
+});
 
 module.exports = {
   entry: {
@@ -27,7 +33,27 @@ module.exports = {
             }
           }
         ]
-      }
+      },
+      {
+        test: /\.scss$/,
+        include: path.resolve(__dirname, "src"),
+        use: extractCSS.extract({
+          use: [
+            "css-loader",
+            "sass-loader",
+            {
+              loader: "postcss-loader",
+              options: {
+                plugins: [
+                  autoprefixer({
+                    browsers: ["last 3 versions"]
+                  })
+                ]
+              }
+            }
+          ]
+        })
+      },
     ]
   },
   plugins: [
@@ -37,6 +63,7 @@ module.exports = {
       template: "./src/index.html",
       hash: true
     }),
-    new CleanWebpackPlugin(["public"])
+    new CleanWebpackPlugin(["public"]),
+    extractCSS,
   ]
 };
